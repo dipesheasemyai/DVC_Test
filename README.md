@@ -68,14 +68,6 @@ git pull
 dvc checkout Dataset.dvc
 ```
 
-### Dataset v2
-
-```bash 
-git checkout v2.0
-git pull
-dvc checkout Dataset.dvc
-```
-
 ### Latest Version
 
 ```bash
@@ -87,9 +79,19 @@ dvc pull
 ## Add New Dataset Changes
 
 ```bash
-dvc add Dataset
+dvc add Dataset 
 git add Dataset.dvc
 git commit -m "Dataset update"
+dvc push
+git push
+```
+
+## Add Model_checkpoint Changes
+
+```bash
+dvc add Model_checkpoint
+git add Model_checkpoint.dvc
+git commit -m "Model Checkpoint update"
 dvc push
 git push
 ```
