@@ -1,3 +1,5 @@
 /ANPR_DVC
 /Dataset
-/model.weights.h5
+/venv
+bottleneck_features_train.npy
+bottleneck_features_validation.npy
