@@ -56,7 +56,7 @@ git tag
 
 ```bash 
 git checkout v1.0
-git pull
+dvc pull
 dvc checkout Dataset.dvc
 ```
 
@@ -64,7 +64,7 @@ dvc checkout Dataset.dvc
 
 ```bash 
 git checkout v2.0
-git pull
+dvc pull
 dvc checkout Dataset.dvc
 ```
 
@@ -73,8 +73,10 @@ dvc checkout Dataset.dvc
 ```bash
 git checkout main
 dvc pull
+dvc checkout Dataset.dvc
 ```
 ---
+
 
 ## Add New Dataset Changes
 
@@ -94,6 +96,12 @@ git add Model_checkpoint.dvc
 git commit -m "Model Checkpoint update"
 dvc push
 git push
+```
+
+## Status of Current Changes
+
+```bash
+dvc status
 ```
 
 ---
