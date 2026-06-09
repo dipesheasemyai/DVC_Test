@@ -97,6 +97,17 @@ git commit -m "Model Checkpoint update"
 dvc push
 git push
 ```
+## Dataset is Froze 
+
+```bash 
+dvc unfreeze <Dataset_folder>.dvc
+```
+
+## Forze Dataset 
+
+```bash
+dvc freeze <Dataset_folder>.dvc
+```
 
 ## Status of Current Changes
 
