@@ -94,6 +94,7 @@ git push
 dvc add Model_checkpoint
 git add Model_checkpoint.dvc
 git commit -m "Model Checkpoint update"
+git tag -a "latest version" -m "model latest version, trained Dataset number"
 dvc push
 git push
 ```
