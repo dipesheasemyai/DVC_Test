@@ -78,26 +78,18 @@ dvc checkout Dataset.dvc
 ---
 
 
-## Add New Dataset Changes
+## Add New Dataset and Model_checkpoint Changes
 
 ```bash
-dvc add Dataset 
-git add Dataset.dvc
-git commit -m "Dataset update"
-dvc push
-git push
-```
-
-## Add Model_checkpoint Changes
-
-```bash
+dvc add Dataset
 dvc add Model_checkpoint
-git add Model_checkpoint.dvc
-git commit -m "Model Checkpoint update"
+git add Dataset.dvc Model_checkpoint.dvc
+git commit -m "Dataset and Model Checkpoint update"
 git tag -a "latest version" -m "model latest version, trained Dataset number"
 dvc push
 git push
 ```
+
 ## Dataset is Froze 
 
 ```bash 
@@ -114,13 +106,4 @@ dvc freeze <Dataset_folder>.dvc
 
 ```bash
 dvc status
-```
-
----
-
-## Create New Dataset Version
-
-```bash
-git tag v3
-git push origin v3
 ```
