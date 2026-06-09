@@ -8,8 +8,8 @@ deps:
   path: 
     ssh://annotation@192.168.1.178:2222/ai_data_collection/anpr_selection/ANPR_DVC/Dataset
 outs:
-- md5: 6fde1482d438ef2dbfa5c382cd3dd1e6.dir
-  size: 63917036
-  nfiles: 2790
+- md5: 23006559f086589f6324ce1823ca3d29.dir
+  size: 63674376
+  nfiles: 2780
   hash: md5
   path: Dataset
