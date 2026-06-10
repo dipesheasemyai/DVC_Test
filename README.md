@@ -297,10 +297,4 @@ git tag
 git branch
 ```
 
-## Show Dataset Metadata
-
-```bash
-cat Dataset.dvc
-```
-
 
