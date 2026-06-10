@@ -8,6 +8,88 @@ This repository manages datasets using DVC (Data Version Control) and Git.
 - Dataset versions are tracked using Git tag
 
 
+## First create virtual eniverment and activate envirement
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+# Install dvc pip
+
+```bash
+pip install dvc
+```
+
+# For also need to add dvc ssh pip
+
+```bash 
+pip install "dvc[ssh]"
+```
+
+# Then activate git
+
+```bash
+git init
+```
+
+## Then activate dvc
+
+```bash
+dvc init
+```
+
+## Conncet to remote server SSH
+
+```bash
+dvc remote add -d remote_server_name ssh://user@example.com:2222/path
+```
+
+## if ssh key authencitation is not available than 
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "email.id"
+```
+
+## Want to test remote server connection 
+
+```bash 
+dvc list-url ssh://user@example.com:2222/path
+```
+
+## Import remote sever database 
+
+```bash
+dvc import-url ssh://user@example.com:2222/path
+```
+
+## If want to remove remote server 
+
+```bash
+dvc remote remove remote_sever_name
+```
+
+## if want to add Dataset
+
+```bash
+dvc add Dataset
+```
+
+## if want to push Dataset to remote server
+
+```bash
+dvc push
+```
+
+## Download Dataset 
+
+Download the dataset corresponding remote server:
+
+```bash
+dvc pull
+dvc checkout Dataset.dvc
+```
+
 ## Prerequisites
 
 ## Clone Repository
@@ -52,18 +134,10 @@ git tag
 
 ## Switch Dataset Version
 
-### Dataset v1
+### Dataset version(v1.0)
 
 ```bash 
-git checkout v1.0
-dvc pull
-dvc checkout Dataset.dvc
-```
-
-### Dataset v2
-
-```bash 
-git checkout v2.0
+git checkout version
 dvc pull
 dvc checkout Dataset.dvc
 ```
@@ -71,10 +145,17 @@ dvc checkout Dataset.dvc
 ### Latest Version
 
 ```bash
-git checkout main
+git checkout main/master
 dvc pull
 dvc checkout Dataset.dvc
 ```
+
+## if want dataset from tag to master/main branch
+
+```bash
+git checkout version -- Dataset.dvc
+```
+
 ---
 
 
