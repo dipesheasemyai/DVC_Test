@@ -99,9 +99,7 @@ dvc add Dataset
 
 This creates:
 
-```text
 Dataset.dvc
-```
 
 Track the metadata file using Git:
 
@@ -136,6 +134,24 @@ dvc checkout Dataset.dvc
 
 ---
 
+# Create a New Dataset Version
+
+After updating the dataset:
+
+```bash
+git add Dataset.dvc
+git commit -m "Update dataset"
+
+dvc push
+```
+Create a version tag:
+
+```bash
+git tag -a v1.0 -m "Dataset version 1.0"
+```
+
+---
+
 # Clone Repository on a New Machine
 
 ## Clone Repository
@@ -165,6 +181,16 @@ dvc checkout Dataset.dvc
 ```
 
 ---
+
+# Unfreeze Dataset
+
+Allow dataset updates:
+
+```bash
+dvc unfreeze Dataset.dvc
+```
+---
+
 
 # Dataset Version Management
 
@@ -249,15 +275,6 @@ Prevent accidental updates:
 dvc freeze Dataset.dvc
 ```
 
----
-
-# Unfreeze Dataset
-
-Allow dataset updates:
-
-```bash
-dvc unfreeze Dataset.dvc
-```
 
 ---
 
