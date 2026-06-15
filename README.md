@@ -104,3 +104,10 @@ git push
 git tag v3
 git push origin v3
 ```
+
+
+## Mount remote server using NFS
+
+```bash
+sudo mount -t nfs USER_IP_ADDRESS:/volume1/ai_data_collection/anpr_selection/ANPR_DVC/Dataset  /path_to_local_dataset
+```
