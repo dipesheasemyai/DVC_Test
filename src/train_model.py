@@ -9,15 +9,17 @@ from tensorflow.keras import applications
 from tensorflow.keras.callbacks import CSVLogger
 from tqdm.keras import TqdmCallback
 
+
 pathname = os.path.dirname(sys.argv[0])
 path = os.path.abspath(pathname)
+
 
 # dimensions of our images.
 img_width, img_height = 150, 150
 
 top_model_weights_path = '../model_checkpoint/model.weights.h5'
-train_data_dir = os.path.join('../Dataset', 'train')
-validation_data_dir = os.path.join('../Dataset', 'validation')
+train_data_dir = os.path.join('../remote_dataset', 'train')
+validation_data_dir = os.path.join('../remote_dataset', 'validation')
 cats_train_path = os.path.join(path, train_data_dir, 'cats')
 nb_train_samples = 2 * len([name for name in os.listdir(cats_train_path)
                             if os.path.isfile(
