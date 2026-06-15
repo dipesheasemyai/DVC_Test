@@ -2,109 +2,310 @@
 
 ## Overview
 
-This repository manages datasets using DVC (Data Version Control) and Git.
+This repository uses **Git** and **DVC (Data Version Control)** to manage datasets and model checkpoints.
 
-- DVC stores large dataset files in remote storage.
-- Dataset versions are tracked using Git tag
+* **Git** tracks source code and dataset metadata (`.dvc` files).
+* **DVC** stores large datasets and model checkpoints in remote storage.
+* **Git Tags** are used to track dataset versions (v1.0, v2.0, v3.0, etc.).
 
+---
 
-## Prerequisites
+# Environment Setup
 
-## Clone Repository
-
-```bash
-git clone  <repository_url>
-```
-
-Install requirements:
+## Create and Activate Virtual Environment
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
 ```
 
-Fetch all tags:
+## Install DVC
 
 ```bash
-git fetch --tags
+pip install dvc
 ```
 
-## Configure DVC Remote
+## Install DVC SSH Support
 
-Check Configure remotes:
+```bash
+pip install "dvc[ssh]"
+```
+
+---
+
+# Initialize Repository
+
+## Initialize Git
+
+```bash
+git init
+```
+
+## Initialize DVC
+
+```bash
+dvc init
+```
+
+---
+
+# Configure DVC Remote Storage
+
+## Add Remote Storage
+
+```bash
+dvc remote add -d remote_storage ssh://user@example.com:2222/path/to/storage
+```
+
+## Verify Remote Configuration
 
 ```bash
 dvc remote list
 ```
 
-## Download Dataset 
+## Remove Remote Storage
 
-Download the dataset corresponding to current git version:
+```bash
+dvc remote remove remote_storage
+```
+
+---
+
+# SSH Authentication (Optional)
+
+If SSH key authentication is not configured:
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+Copy the generated public key to the remote server.
+
+Test SSH connection:
+
+```bash
+ssh user@example.com
+```
+
+---
+
+# Dataset Management
+
+## Add Dataset
+
+```bash
+dvc add Dataset
+```
+
+This creates:
+
+Dataset.dvc
+
+Track the metadata file using Git:
+
+```bash
+git add Dataset.dvc
+git commit -m "Add dataset"
+```
+
+---
+
+## Push Dataset to Remote Storage
+
+```bash
+dvc push
+```
+
+This uploads dataset files to the configured DVC remote storage.
+
+---
+
+## Pull Dataset from Remote Storage
 
 ```bash
 dvc pull
 ```
 
-List available tags:
+Restore dataset files:
+
+```bash
+dvc checkout Dataset.dvc
+```
+
+---
+
+# Create a New Dataset Version
+
+After updating the dataset:
+
+```bash
+git add Dataset.dvc
+git commit -m "Update dataset"
+
+dvc push
+```
+Create a version tag:
+
+```bash
+git tag -a v1.0 -m "Dataset version 1.0"
+```
+
+---
+
+# Clone Repository on a New Machine
+
+## Clone Repository
+
+```bash
+git clone <repository_url>
+cd <repository_name>
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Fetch All Tags
+
+```bash
+git fetch --tags
+```
+
+## Pull Dataset
+
+```bash
+dvc pull
+dvc checkout Dataset.dvc
+```
+
+---
+
+# Unfreeze Dataset
+
+Allow dataset updates:
+
+```bash
+dvc unfreeze Dataset.dvc
+```
+---
+
+
+# Dataset Version Management
+
+## List Available Dataset Versions
 
 ```bash
 git tag
 ```
 
-## Switch Dataset Version
+---
 
-### Dataset v1
-
-```bash 
-git checkout v1.0
-git pull
-dvc checkout Dataset.dvc
-```
-
-### Dataset v2
-
-```bash 
-git checkout v2.0
-git pull
-dvc checkout Dataset.dvc
-```
-
-### Latest Version
+## Checkout Dataset Version
 
 ```bash
-git checkout main
+git checkout tag_version
+
 dvc pull
+dvc checkout
 ```
 ---
 
-## Add New Dataset Changes
+## Checkout Latest Version
 
 ```bash
-dvc add Dataset 
+git checkout master
+
+dvc pull
+dvc checkout
+```
+
+---
+
+# Create a New Dataset Version
+
+After updating the dataset:
+
+```bash
+dvc add Dataset
+
 git add Dataset.dvc
-git commit -m "Dataset update"
+git commit -m "Update dataset"
+
 dvc push
-git push
 ```
 
-## Add Model_checkpoint Changes
+Create a version tag:
 
 ```bash
-dvc add Model_checkpoint
-git add Model_checkpoint.dvc
-git commit -m "Model Checkpoint update"
+git tag -a v3.0 -m "Dataset version 3.0"
+```
+
+Push changes and tags:
+
+```bash
+git push origin master
+git push origin --tags
+```
+
+---
+
+# Model Checkpoint Versioning
+
+Add model checkpoints:
+
+```bash
+dvc add Model_Checkpoint
+
+git add Model_Checkpoint.dvc
+git commit -m "Update model checkpoint"
+
 dvc push
 git push
 ```
 
 ---
-
-## Create New Dataset Version
 
 ```bash
 git tag v3
 git push origin v3
 ```
 
+---
+
+# Check Dataset Status
+
+View dataset changes:
+
+```bash
+dvc status
+```
+
+---
+
+# Useful Commands
+
+## Show Current DVC Remotes
+
+```bash
+dvc remote list
+```
+
+## Show Git Tags
+
+```bash
+git tag
+```
+
+## Show Current Branch
+
+```bash
+git branch
+```
+
+
+---
 
 ## Mount remote server using NFS
 

@@ -1,3 +1,4 @@
 dvc==3.67.1
 pillow==12.2.0
 tensorflow==2.21.0
+dvc-ssh==4.3.0
