@@ -1,7 +1,5 @@
 [core]
     remote = ssh-storage
-[cache]
-    dir = ../ssh-storage
 ['remote "ssh-storage"']
     url = ssh://annotation@192.168.1.178:2222/ai_data_collection/anpr_selection/ANPR_DVC/Dataset
     ask_password = false
