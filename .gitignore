@@ -5,3 +5,4 @@ bottleneck_features_train.npy
 bottleneck_features_validation.npy
 /model_checkpoint
 /remote_dataset
+/ssh-storage
