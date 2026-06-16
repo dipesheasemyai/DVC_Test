@@ -33,6 +33,61 @@ pip install "dvc[ssh]"
 
 ---
 
+# Mount Remote Server using NFS
+
+Mount the dataset from the NAS server so that it can be accessed directly without downloading it locally.
+
+## Mount Dataset
+
+```bash
+sudo mount -t nfs USER_IP_ADDRESS:/volume1/ai_data_collection/anpr_selection/ANPR_DVC/Dataset /mnt/anpr_dataset
+```
+
+## Verify Mount
+
+```bash
+ls /mnt/anpr_dataset
+```
+
+Expected output:
+
+```text
+train/
+validation/
+test/
+```
+
+## Use Mounted Dataset in Training Code
+
+```python
+train_data_dir = "/mnt/anpr_dataset/train"
+validation_data_dir = "/mnt/anpr_dataset/validation"
+```
+
+Training scripts will read data directly from the mounted storage.
+
+## Check Mount Status
+
+```bash
+mount | grep nfs
+```
+
+or
+
+```bash
+df -h
+```
+
+## Unmount Dataset
+
+```bash
+sudo umount /mnt/anpr_dataset
+```
+
+> **Note:** When using NFS, datasets remain on the remote server and are accessed directly. This avoids storing large datasets on local machines.
+
+---
+
 # Initialize Repository
 
 ## Initialize Git
@@ -99,7 +154,9 @@ dvc add Dataset
 
 This creates:
 
+```text
 Dataset.dvc
+```
 
 Track the metadata file using Git:
 
@@ -144,6 +201,7 @@ git commit -m "Update dataset"
 
 dvc push
 ```
+
 Create a version tag:
 
 ```bash
@@ -189,8 +247,8 @@ Allow dataset updates:
 ```bash
 dvc unfreeze Dataset.dvc
 ```
----
 
+---
 
 # Dataset Version Management
 
@@ -205,11 +263,12 @@ git tag
 ## Checkout Dataset Version
 
 ```bash
-git checkout tag_version
+git checkout <tag_version>
 
 dvc pull
 dvc checkout
 ```
+
 ---
 
 ## Checkout Latest Version
@@ -265,7 +324,7 @@ dvc push
 git push
 ```
 
----
+Create a checkpoint tag:
 
 ```bash
 git tag v3
@@ -302,13 +361,4 @@ git tag
 
 ```bash
 git branch
-```
-
-
----
-
-## Mount remote server using NFS
-
-```bash
-sudo mount -t nfs USER_IP_ADDRESS:/volume1/ai_data_collection/anpr_selection/ANPR_DVC/Dataset  /path_to_local_dataset
 ```
