@@ -19,18 +19,11 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-## Install DVC
+## Install Requirements
 
 ```bash
-pip install dvc
+pip install -r requirement.txt
 ```
-
-## Install DVC SSH Support
-
-```bash
-pip install "dvc[ssh]"
-```
-
 ---
 
 # Mount Remote Server using NFS
@@ -40,7 +33,7 @@ Mount the dataset from the NAS server so that it can be accessed directly withou
 ## Mount Dataset
 
 ```bash
-sudo mount -t nfs USER_IP_ADDRESS:/volume1/ai_data_collection/anpr_selection/ANPR_DVC/Dataset /mnt/anpr_dataset
+sudo mount -t nfs USER_IP_ADDRESS:/volume1/ai_data_collection/anpr_selection/ANPR_DVC/Dataset /path_to_local_Dataset_folder
 ```
 
 ## Verify Mount
@@ -51,11 +44,9 @@ ls /mnt/anpr_dataset
 
 Expected output:
 
-```text
 train/
 validation/
 test/
-```
 
 ## Use Mounted Dataset in Training Code
 
@@ -67,12 +58,6 @@ validation_data_dir = "/mnt/anpr_dataset/validation"
 Training scripts will read data directly from the mounted storage.
 
 ## Check Mount Status
-
-```bash
-mount | grep nfs
-```
-
-or
 
 ```bash
 df -h
@@ -88,28 +73,12 @@ sudo umount /mnt/anpr_dataset
 
 ---
 
-# Initialize Repository
-
-## Initialize Git
-
-```bash
-git init
-```
-
-## Initialize DVC
-
-```bash
-dvc init
-```
-
----
-
-# Configure DVC Remote Storage
+# Configure DVC Remote Storage cache
 
 ## Add Remote Storage
 
 ```bash
-dvc remote add -d remote_storage ssh://user@example.com:2222/path/to/storage
+dvc remote add -d remote_storage_cache ssh://user@example.com:2222/path/to/dvc-cache
 ```
 
 ## Verify Remote Configuration
@@ -126,37 +95,18 @@ dvc remote remove remote_storage
 
 ---
 
-# SSH Authentication (Optional)
-
-If SSH key authentication is not configured:
-
-```bash
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-```
-
-Copy the generated public key to the remote server.
-
-Test SSH connection:
-
-```bash
-ssh user@example.com
-```
-
----
-
 # Dataset Management
 
 ## Add Dataset
 
 ```bash
-dvc add Dataset
+dvc add mount_folder_name
 ```
 
 This creates:
 
-```text
 Dataset.dvc
-```
+
 
 Track the metadata file using Git:
 
@@ -236,16 +186,6 @@ git fetch --tags
 ```bash
 dvc pull
 dvc checkout Dataset.dvc
-```
-
----
-
-# Unfreeze Dataset
-
-Allow dataset updates:
-
-```bash
-dvc unfreeze Dataset.dvc
 ```
 
 ---
