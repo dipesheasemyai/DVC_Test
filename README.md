@@ -99,8 +99,13 @@ dvc remote list
 ```bash
 dvc remote remove remote_storage
 ```
-
 ---
+
+# Dataset update
+
+```bash
+dvc update remote_dataset.dvc
+```
 
 # Dataset Management
 
