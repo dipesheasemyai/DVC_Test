@@ -26,6 +26,13 @@ pip install -r requirement.txt
 ```
 ---
 
+# Create folder to Mount
+
+```bash
+mkdir remote_dataset
+```
+---
+
 # Mount Remote Server using NFS
 
 Mount the dataset from the NAS server so that it can be accessed directly without downloading it locally.
