@@ -1,6 +1,6 @@
 outs:
-- hash: md5
-  path: remote_dataset
-  md5: 23006559f086589f6324ce1823ca3d29.dir
+- md5: 23006559f086589f6324ce1823ca3d29.dir
   size: 63674376
   nfiles: 2780
+  hash: md5
+  path: remote_dataset
