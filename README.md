@@ -91,13 +91,13 @@ dvc remote list
 ```bash
 dvc remote remove remote_storage
 ```
----
 
-# Dataset update
+## Fetech Recent data from dvc 
 
-```bash
-dvc update remote_dataset.dvc
+```bash 
+dvc pull
 ```
+
 
 # Dataset Management
 
