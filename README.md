@@ -129,6 +129,23 @@ git commit -m "Add dataset"
 
 ---
 
+## Check previous Dataset using 
+
+```bash 
+git checkout version -- file_name.dvc # like to view dataset using dataset.dvc or  model_checkpoint.dvc to check model peformance
+```
+
+or 
+
+if want to check both things
+
+```bash
+git checkout version
+```
+
+---
+
+
 ## Push Dataset to Remote Storage
 
 ```bash
