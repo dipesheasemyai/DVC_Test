@@ -145,16 +145,6 @@ git commit -m "Add dataset"
 ## Checkout Dataset Version
 
 ```bash
-git checkout <tag_version>
-
-dvc checkout
-```
-
----
-
-## Get Dataset Version
-
-```bash
 git checkout <tag_version> -- dataset.dvc   
 
 dvc checkout dataset.dvc
@@ -162,7 +152,7 @@ dvc checkout dataset.dvc
 
 ---
 
-## Get Model Performance Version
+## Checkout Model Checkpoint Version
 
 ```bash
 git checkout <tag_version> -- Model_checkpoint.dvc   
