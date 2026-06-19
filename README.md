@@ -74,7 +74,7 @@ df -h
 ## Unmount Dataset
 
 ```bash
-sudo umount /mnt/anpr_dataset
+sudo umount -f /mnt/anpr_dataset
 ```
 
 > **Note:** When using NFS, datasets remain on the remote server and are accessed directly. This avoids storing large datasets on local machines.
