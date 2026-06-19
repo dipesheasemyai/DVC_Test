@@ -29,7 +29,7 @@ pip install -r requirement.txt
 # Create folder to Mount
 
 ```bash
-mkdir remote_dataset
+mkdir remote_dataset # Create same folder name to given dataset_folder.dvc
 ```
 ---
 
