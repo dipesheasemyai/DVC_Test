@@ -56,15 +56,6 @@ train/
 validation/
 test/
 
-## Use Mounted Dataset in Training Code
-
-```python
-train_data_dir = "/mnt/anpr_dataset/train"
-validation_data_dir = "/mnt/anpr_dataset/validation"
-```
-
-Training scripts will read data directly from the mounted storage.
-
 ## Check Mount Status
 
 ```bash
