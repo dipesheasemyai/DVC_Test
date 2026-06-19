@@ -33,6 +33,7 @@ mkdir remote_dataset
 ```
 ---
 
+
 # Mount Remote Server using NFS
 
 Mount the dataset from the NAS server so that it can be accessed directly without downloading it locally.
@@ -119,30 +120,6 @@ This creates:
 
 Dataset.dvc
 
-
-Track the metadata file using Git:
-
-```bash
-git add Dataset.dvc
-git commit -m "Add dataset"
-```
-
----
-
-## Check previous Dataset using 
-
-```bash 
-git checkout version -- file_name.dvc # like to view dataset using dataset.dvc or  model_checkpoint.dvc to check model peformance
-```
-
-or 
-
-if want to check both things
-
-```bash
-git checkout version
-```
-
 ---
 
 
@@ -156,16 +133,41 @@ This uploads dataset files to the configured DVC remote storage.
 
 ---
 
-## Pull Dataset from Remote Storage
+Track the metadata file using Git:
 
 ```bash
-dvc pull
+git add Dataset.dvc
+git commit -m "Add dataset"
 ```
 
-Restore dataset files:
+---
+
+## Checkout Dataset Version
 
 ```bash
-dvc checkout Dataset.dvc
+git checkout <tag_version>
+
+dvc checkout
+```
+
+---
+
+## Get Dataset Version
+
+```bash
+git checkout <tag_version> -- dataset.dvc   
+
+dvc checkout dataset.dvc
+```
+
+---
+
+## Get Model Performance Version
+
+```bash
+git checkout <tag_version> -- Model_checkpoint.dvc   
+
+dvc checkout Model_checkpoint.dvc
 ```
 
 ---
@@ -175,10 +177,11 @@ dvc checkout Dataset.dvc
 After updating the dataset:
 
 ```bash
+dvc push
+
 git add Dataset.dvc
 git commit -m "Update dataset"
 
-dvc push
 ```
 
 Create a version tag:
@@ -209,14 +212,6 @@ pip install -r requirements.txt
 ```bash
 git fetch --tags
 ```
-
-## Pull Dataset
-
-```bash
-dvc pull
-dvc checkout Dataset.dvc
-```
-
 ---
 
 # Dataset Version Management
@@ -229,23 +224,11 @@ git tag
 
 ---
 
-## Checkout Dataset Version
-
-```bash
-git checkout <tag_version>
-
-dvc pull
-dvc checkout
-```
-
----
 
 ## Checkout Latest Version
 
 ```bash
 git checkout master
-
-dvc pull
 dvc checkout
 ```
 
@@ -258,10 +241,11 @@ After updating the dataset:
 ```bash
 dvc add Dataset
 
+dvc push
+
 git add Dataset.dvc
 git commit -m "Update dataset"
 
-dvc push
 ```
 
 Create a version tag:
@@ -285,11 +269,11 @@ Add model checkpoints:
 
 ```bash
 dvc add Model_Checkpoint
+dvc push
 
 git add Model_Checkpoint.dvc
 git commit -m "Update model checkpoint"
 
-dvc push
 git push
 ```
 
